@@ -1,14 +1,14 @@
 import { Input } from "@/components/ui/input";
-import { useAppDispatch } from "@/app/hooks";
-import { setSearchQuery } from "../todosSlice";
 
-export function TodoSearch() {
-  const dispatch = useAppDispatch();
-
+export function TodoSearch({
+  handleSearch,
+}: {
+  handleSearch: (query: string) => void;
+}) {
   return (
     <Input
       placeholder="Search todos..."
-      onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+      onChange={(e) => handleSearch(e.target.value)}
       className="mb-2"
     />
   );

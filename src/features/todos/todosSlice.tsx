@@ -4,7 +4,6 @@ import type { TodosState } from "./types";
 const initialState: TodosState = {
   items: [],
   filter: "all",
-  searchQuery: "",
 };
 
 const todosSlice = createSlice({
@@ -41,17 +40,13 @@ const todosSlice = createSlice({
     deleteTodo(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
-
-    setFilter(state, action: PayloadAction<TodosState["filter"]>) {
+    setFilter(state, action: PayloadAction<"all" | "active" | "completed">) {
       state.filter = action.payload;
-    },
-    setSearchQuery(state, action: PayloadAction<string>) {
-      state.searchQuery = action.payload;
     },
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo, setSearchQuery, setFilter } =
+export const { addTodo, toggleTodo, deleteTodo, setFilter } =
   todosSlice.actions;
 
 export default todosSlice.reducer;

@@ -7,5 +7,4 @@ export interface Todo {
 export interface TodosState {
   items: Todo[];
   filter: "all" | "active" | "completed";
-  searchQuery: string;
 }
