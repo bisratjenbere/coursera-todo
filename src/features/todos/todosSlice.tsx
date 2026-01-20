@@ -40,13 +40,17 @@ const todosSlice = createSlice({
     deleteTodo(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
+    EditTodo(state, action: PayloadAction<{ id: string; title: string }>) {
+      const todo = state.items.find((todo) => todo.id === action.payload.id);
+      if (todo) todo.title = action.payload.title;
+    },
     setFilter(state, action: PayloadAction<"all" | "active" | "completed">) {
       state.filter = action.payload;
     },
   },
 });
 
-export const { addTodo, toggleTodo, deleteTodo, setFilter } =
+export const { addTodo, toggleTodo, deleteTodo, setFilter, EditTodo } =
   todosSlice.actions;
 
 export default todosSlice.reducer;
